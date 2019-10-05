@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BootDonalds</title>
+</head>
+
+<body>
+
+<div id="su-pedido"><h2>Factura
+
+</h2>
+</div>
+
+    <script>
+
+
+
+        let productos = {
+            menus: {
+                'Grand Big Boot': 8.5,
+                'Big Boot': 8,
+                'BootPollo': 7.50,
+                'Cuarto de libra': 7,
+                'BootRoyal Deluxe': 7
+            },
+            burgers: {
+                'Grand Big Boot': 6,
+                'Big Boot': 5.5,
+                'BootPollo': 5,
+                'Cuarto de libra': 4.5,
+                'BootRoyal Deluxe': 4.5
+            },
+            drinks: {
+                'CocaCola': 2,
+                'Fanta': 2,
+                'Agua': 1,
+                'Cerveza': 2.5
+            },
+            fries: 1
+        };
+
+        let pedidoCompleto = '';
+        let precioTotal = 0;
+        let pedido;
+
+        do {
+            pedido = window.prompt('Elige tu opción: menu, hamburguesa, bebida, acabar pedido').toLowerCase();
+
+            if (pedido === 'menu') {
+                nombreMenu = window.prompt('¿Qué tipo de menú quieres?');
+                precioTotal += parseInt(productos['menus'][nombreMenu]);
+                bebidaMenu = window.prompt('¿Qué bebida quieres?');
+                pedidoCompleto += `<p>Un menu ${nombreMenu} con patatas y ${bebidaMenu}</p>`;
+
+              
+
+            }
+            if (pedido === 'hamburguesa') {
+                nombreBurger = window.prompt('¿Qué tipo de hamburguesa quieres?');
+                precioTotal += productos['burgers'][nombreBurger];
+                patatasBurger = window.prompt('¿Quieres añadir patatas?');
+                if (patatasBurger === 'si') {
+                    pedidoCompleto += `<p>Una hamburguesa ${nombreBurger} con patatas </p>`;
+                    precioTotal += productos.fries;
+                } else {
+                    pedidoCompleto += `<p>Una hamburguesa ${nombreBurger}</p>`;
+                }
+            }
+            if (pedido === 'bebida') {
+                nombreBebida = window.prompt('¿Qué tipo de bebida quieres?');
+                precioTotal += productos['drinks'][nombreBebida];
+
+                pedidoCompleto += `<p>Un/a ${nombreBebida}</p>`;
+
+
+                }
+            }
+
+
+        while (pedido !== 'acabar pedido');
+
+        console.log(pedidoCompleto);
+        console.log(precioTotal);
+
+        let texto = document.getElementById('su-pedido');
+        texto.innerHTML+=(pedidoCompleto);
+        texto.innerHTML+=`(Precio Total: ${precioTotal})`;
+
+       /* texto += `<p>Precio Total: ${precioTotal} euros</p>`;*/
+
+
+
+    </script>
+
+</body>
+
+</html>
